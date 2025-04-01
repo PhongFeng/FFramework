@@ -88,7 +88,7 @@
 
 版本发布CI&CD流程：  
 CI(Continuous integration持续集成）持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。  
-CD(Continuous Delivery持续交付) 是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境(类生产环境)中CD(Continuous Delivery持续交付) 是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境(类生产环境)中。  
+CD(Continuous Delivery持续交付) 是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境(类生产环境)中。  
 Jenkins是开源CI&CD软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要。  
 Jenkins[安装教程](https://www.jenkins.io/doc/book/installing/windows/)  
 Unity Editor command line arguments[Unity命令参数](https://docs.unity3d.com/2022.3/Documentation/Manual/EditorCommandLineArguments.html)  
@@ -127,10 +127,12 @@ isLocalPack：(bool git分支验收，将所有资源打入包内)；
 * 游戏行业分析 [Sensortower跳转](https://sensortower.cn/zh-CN/blog)   
 * 记得多玩游戏 [Steam跳转](https://store.steampowered.com)   
 
-<u>世界就是个草台班子</u>
 
 
 ### 参考  
 代码热更基于 [HybridCLR跳转](https://github.com/focus-creative-games/HybridCLR)  
 资源热更基于 [YooAsset跳转](https://www.yooasset.com/)     
-框架基础基于 [GameFramework跳转](https://github.com/EllanJiang/GameFramework)  
+框架基础基于 [GameFramework跳转](https://github.com/EllanJiang/GameFramework)    
+  
+   
+<u>世界就是个草台班子</u>
