@@ -5,8 +5,8 @@
 **Gameplay的核心3C要素——角色（Character）、操控（Control）和镜头（Camera），定义了游戏的规则与状态；这些要素与用户界面共同构成了游戏玩法的基础框架。**  
   
 ### 介绍   
-1，代码热更模块基于HybridCLR。  
-2，资源热更及管理基于YooAsset  
+1，代码热更模块基于HybridCLR。    
+2，资源热更及管理基于YooAsset。  
 3，框架基于GameFramework，并修改支持HybridCLR及YooAsset。  
 并实现，Jenkins自动多渠道打包，白名单灰度测试，一键发布热更资源及版本回退。  
 [【为什么不使用用Addressable，或者其他资源管理】](https://www.yooasset.com/docs/Introduce)   
@@ -16,7 +16,7 @@
 以及行为准则，例如加载场景必须用框架的xxx接口，贴图必须放在xxx文件夹下等  
 （2）性能优化：CPU；GPU；内存   
 （3）埋点及数据分析，协助运营及发行及时了解游戏运行状况。  
-等一些列游戏项目开发中的知识点：     
+等一系列游戏项目开发中的知识点：     
 [【代码混淆 跳转】](Tools/ReadMe/UnityObfuscator.md)        [【小红点 跳转】](Tools/ReadMe/RedPoint.md)    
 [【SDK 跳转】](Tools/ReadMe/SDK.md)         [【循环列表 跳转】](Tools/ReadMe/LoopScrollRect.md)   
 [【新手引导 跳转】](Tools/ReadMe/Guide.md)  [【相机控制 跳转】](Tools/ReadMe/Camera.md)   
@@ -37,7 +37,7 @@
   
 ### 愿景  
   
-可以通过该框架，几乎可以了解到游戏开发的完整流程。  
+可以通过该框架，几乎可以了解到游戏开发的完整流程。   
   
   
 ---
@@ -46,7 +46,7 @@
 ## 三、如何让项目运行并实现热更及资源管理  
 
 ### 游戏入口流程
-(1)在Main场景下，对资源及代码进行热更新（可以通过玩家的UID添加白名单测试）    
+(1)在Main场景下，对资源及代码进行热更新（可以通过玩家的UID添加白名单灰度，只允许白名单用户下载最新资源）      
 (2)加载完资源会调用初始化LoadDll，加载热更Dll   
 (3)加载完Dll切换游戏场景，进入游戏模块   
 
@@ -61,6 +61,7 @@
 (1)点击执行HybridCLR/Installer打开一个窗体，点击Install等待安装完成   
 (2)点击执行HybridCLR/Generate/All, 等待执行完毕    
 (3)点击执行HybridCLR/Build/BuildAssetsAndCopyToRes,将Dll生成并拷贝到资源文件夹中   
+**已添加自动化代码，不需要额外操作**  
 
 ### YooAsset 实现本地模拟
 需要利用HFS搭建一个本地服务器，确保手机和电脑处于同一网络，便可实现热更  
@@ -119,20 +120,18 @@ isLocalPack：(bool git分支验收，将所有资源打入包内)；
 (2)版本灰度问题，白名单ID问题 （采用后端生成的uid，设备id有权限申请问题）    
 
 
-### 行业信息  
-  
-<u>​不要只顾低头赶路，也要抬头看看远方</u>   
-
-* 游戏行业数据 [游鲨游戏行业数据跳转](https://www.kdocs.cn/l/ct4bcS9xHD3K)   
-* 游戏行业分析 [Sensortower跳转](https://sensortower.cn/zh-CN/blog)   
-* 记得多玩游戏 [Steam跳转](https://store.steampowered.com)   
-
-
-
 ### 参考  
 代码热更基于 [HybridCLR跳转](https://github.com/focus-creative-games/HybridCLR)  
 资源热更基于 [YooAsset跳转](https://www.yooasset.com/)     
 框架基础基于 [GameFramework跳转](https://github.com/EllanJiang/GameFramework)    
   
+    
+### 行业信息  
+  
+<u>​不要只顾低头赶路，也要抬头看看远方</u>   
+
+* 游戏行业数据 [游鲨游戏行业数据跳转](https://www.kdocs.cn/l/ct4bcS9xHD3K)   
+* 游戏行业分析 [Sensortower跳转](https://sensortower.com/zh-CN/blog)   
+* 记得多玩游戏 [Steam跳转](https://store.steampowered.com)   
    
 <u>世界就是个草台班子</u>
