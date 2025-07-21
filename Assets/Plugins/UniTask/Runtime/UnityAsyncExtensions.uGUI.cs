@@ -673,7 +673,7 @@ namespace Cysharp.Threading.Tasks
                     }
                     if (cancellationToken2.CanBeCanceled)
                     {
-                        registration2 = cancellationToken2.RegisterWithoutCaptureExecutionContext(cancel2, this);
+                        registration2 = cancellationToken1.RegisterWithoutCaptureExecutionContext(cancel2, this);
                     }
                 }
 
@@ -688,27 +688,13 @@ namespace Cysharp.Threading.Tasks
             static void OnCanceled1(object state)
             {
                 var self = (UnityEventHandlerAsyncEnumerator)state;
-                try
-                {
-                    self.completionSource.TrySetCanceled(self.cancellationToken1);
-                }
-                finally
-                {
-                    self.DisposeAsync().Forget();
-                }
+                self.DisposeAsync().Forget();
             }
 
             static void OnCanceled2(object state)
             {
                 var self = (UnityEventHandlerAsyncEnumerator)state;
-                try
-                {
-                    self.completionSource.TrySetCanceled(self.cancellationToken2);
-                }
-                finally
-                {
-                    self.DisposeAsync().Forget();
-                }
+                self.DisposeAsync().Forget();
             }
 
             public UniTask DisposeAsync()
@@ -720,8 +706,6 @@ namespace Cysharp.Threading.Tasks
                     registration1.Dispose();
                     registration2.Dispose();
                     unityEvent.RemoveListener(unityAction);
-
-                    completionSource.TrySetCanceled();
                 }
 
                 return default;
@@ -793,7 +777,7 @@ namespace Cysharp.Threading.Tasks
                     }
                     if (cancellationToken2.CanBeCanceled)
                     {
-                        registration2 = cancellationToken2.RegisterWithoutCaptureExecutionContext(cancel2, this);
+                        registration2 = cancellationToken1.RegisterWithoutCaptureExecutionContext(cancel2, this);
                     }
                 }
 
@@ -809,27 +793,13 @@ namespace Cysharp.Threading.Tasks
             static void OnCanceled1(object state)
             {
                 var self = (UnityEventHandlerAsyncEnumerator)state;
-                try
-                {
-                    self.completionSource.TrySetCanceled(self.cancellationToken1);
-                }
-                finally
-                {
-                    self.DisposeAsync().Forget();
-                }
+                self.DisposeAsync().Forget();
             }
 
             static void OnCanceled2(object state)
             {
                 var self = (UnityEventHandlerAsyncEnumerator)state;
-                try
-                {
-                    self.completionSource.TrySetCanceled(self.cancellationToken2);
-                }
-                finally
-                {
-                    self.DisposeAsync().Forget();
-                }
+                self.DisposeAsync().Forget();
             }
 
             public UniTask DisposeAsync()
@@ -845,8 +815,6 @@ namespace Cysharp.Threading.Tasks
                         disp.Dispose();
                     }
                     unityEvent.RemoveListener(unityAction);
-
-                    completionSource.TrySetCanceled();
                 }
 
                 return default;
