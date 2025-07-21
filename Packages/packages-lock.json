@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "410bb9b542664e9288588b5c23d3300e01e5936e"
+      "hash": "ee7af5c5926c12402b3ccd121408646f1cf3128f"
     },
     "com.code-philosophy.luban": {
       "version": "file:com.code-philosophy.luban@de0348c453",

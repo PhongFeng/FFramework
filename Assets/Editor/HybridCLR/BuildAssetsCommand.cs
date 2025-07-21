@@ -15,8 +15,8 @@ namespace HybridCLR.Editor
         public static void BuildAndCopyABAOTHotUpdateDlls()
         {
             // 设置AOT
-            Settings.ScriptableSingleton<HybridCLRSettings>.Instance.patchAOTAssemblies = AOTGenericReferences.PatchedAOTAssemblyList.ToArray();
-            Settings.ScriptableSingleton<HybridCLRSettings>.Save();
+            HybridCLRSettings.Instance.patchAOTAssemblies = AOTGenericReferences.PatchedAOTAssemblyList.ToArray();
+            HybridCLRSettings.Save();
 
             // Copy Dll bytes
             BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
