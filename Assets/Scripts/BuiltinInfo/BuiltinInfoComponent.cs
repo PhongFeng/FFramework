@@ -11,7 +11,7 @@ using UnityGameFramework.Runtime;
 
 namespace Flower
 {
-    public class BuiltinDataComponent : GameFrameworkComponent
+    public class BuiltinInfoComponent : GameFrameworkComponent
     {
         [SerializeField]
         private TextAsset m_BuildInfoTextAsset = null;
