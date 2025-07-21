@@ -81,8 +81,8 @@ namespace Flower
         {
             //if (GameEntry.Base.EditorResourceMode)
             //{
-            // 编辑器资源模式不使用 AssetBundle，也就没有变体了
-            //return;
+                // 编辑器资源模式不使用 AssetBundle，也就没有变体了
+            //  return;
             //}
 
             string currentVariant = null;

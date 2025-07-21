@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using GameFramework.DataTable;
+﻿using Flower.Data;
 using GameFramework.Event;
 using GameFramework.Procedure;
 using System;
 using UnityGameFramework.Runtime;
-using Flower.Data;
 using ProcedureOwner = GameFramework.Fsm.IFsm<GameFramework.Procedure.IProcedureManager>;
 
 namespace Flower
