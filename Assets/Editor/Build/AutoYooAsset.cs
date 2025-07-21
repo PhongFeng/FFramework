@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using YooAsset;
 using YooAsset.Editor;
 
 public class AutoYooAsset : Editor
@@ -22,7 +23,7 @@ public class AutoYooAsset : Editor
         scriptableBuildParameters.BuildinFileRoot = streamingAssetsRoot;
         scriptableBuildParameters.BuildPipeline = EBuildPipeline.ScriptableBuildPipeline.ToString();
         scriptableBuildParameters.BuildTarget = buildTarget;
-        scriptableBuildParameters.BuildMode = EBuildMode.IncrementalBuild;
+        //scriptableBuildParameters.BuildMode = EBuildMode.IncrementalBuild;
         scriptableBuildParameters.PackageName = packageName;
         scriptableBuildParameters.PackageVersion = buildVersion;
         scriptableBuildParameters.VerifyBuildingResult = true;

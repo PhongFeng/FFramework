@@ -15,7 +15,7 @@ public class PatchOperation : GameAsyncOperation
     public EPlayMode playMode;
     public ResourceDownloaderOperation resourceDownloaderOperation;
 
-    public PatchOperation(string packageName, string buildPipeline, EPlayMode playMode)
+    public PatchOperation(string packageName, EPlayMode playMode)
     {
         // 注册监听事件
         eventManager.Subscribe(UserEventDefine.UserTryInitialize.EventId, EventMessage);
@@ -39,7 +39,6 @@ public class PatchOperation : GameAsyncOperation
 
         this.packageName = packageName;
         this.playMode = playMode;
-        this.buildPipeline = buildPipeline;
     }
 
     protected override void OnStart()

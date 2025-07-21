@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using YooAsset;
 
-public static class AssetOperationHandleExtension
+public static class AssetHandleExtension
 {
     /// <summary>
     /// 等待异步执行完毕

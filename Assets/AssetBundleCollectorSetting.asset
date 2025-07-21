@@ -32,7 +32,7 @@ MonoBehaviour:
       - CollectPath: Assets/GameRes/Configs
         CollectorGUID: d71e203b28817da419898215f8c68f64
         CollectorType: 0
-        AddressRuleName: AddressDisable
+        AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
@@ -40,7 +40,7 @@ MonoBehaviour:
       - CollectPath: Assets/GameRes/DataTables
         CollectorGUID: d7b5e378de1f5b54b81a3e707783d301
         CollectorType: 0
-        AddressRuleName: AddressDisable
+        AddressRuleName: AddressByFileNameAndExt
         PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
@@ -61,14 +61,6 @@ MonoBehaviour:
         FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-      - CollectPath: Assets/GameRes/Tile
-        CollectorGUID: 01ea0a02041ef0c498550171cb6d879c
-        CollectorType: 0
-        AddressRuleName: AddressByFolderAndFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
       - CollectPath: Assets/GameRes/Localization
         CollectorGUID: 45906da4213fdf14ebbb0aeefac429ab
         CollectorType: 0
@@ -80,23 +72,7 @@ MonoBehaviour:
       - CollectPath: Assets/GameRes/Scenes
         CollectorGUID: 87faed7d524a4034a8df19e39d11d4a3
         CollectorType: 0
-        AddressRuleName: AddressByFolderAndFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
-      - CollectPath: Assets/GameRes/Sounds
-        CollectorGUID: 345203f4b4b509e409623d184cbc80fd
-        CollectorType: 0
-        AddressRuleName: AddressByFolderAndFileName
-        PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
-        UserData: 
-      - CollectPath: Assets/GameRes/UI
-        CollectorGUID: ebf3f2a276eb30a419624e55039c1450
-        CollectorType: 0
-        AddressRuleName: AddressByFolderAndFileName
+        AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
         FilterRuleName: CollectAll
         AssetTags: 
@@ -104,34 +80,32 @@ MonoBehaviour:
       - CollectPath: Assets/GameRes/ShaderVariants
         CollectorGUID: 8e740c6ddb1d8fa43abfdcf00f024d1f
         CollectorType: 0
-        AddressRuleName: AddressByFileName
+        AddressRuleName: AddressByFileNameAndExt
         PackRuleName: PackDirectory
-        FilterRuleName: CollectShaderVariants
+        FilterRuleName: CollectAll
         AssetTags: 
         UserData: 
-  - PackageName: LaunchPackage
-    PackageDesc: 
-    EnableAddressable: 0
-    LocationToLower: 0
-    IncludeAssetGUID: 0
-    AutoCollectShaders: 1
-    IgnoreRuleName: NormalIgnoreRule
-    Groups:
-    - GroupName: Default Group
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
-  - PackageName: RemotePackage
-    PackageDesc: 
-    EnableAddressable: 0
-    LocationToLower: 0
-    IncludeAssetGUID: 0
-    AutoCollectShaders: 1
-    IgnoreRuleName: NormalIgnoreRule
-    Groups:
-    - GroupName: Default Group
-      GroupDesc: 
-      AssetTags: 
-      ActiveRuleName: EnableGroup
-      Collectors: []
+      - CollectPath: Assets/GameRes/Sounds
+        CollectorGUID: 345203f4b4b509e409623d184cbc80fd
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/GameRes/Tile
+        CollectorGUID: 01ea0a02041ef0c498550171cb6d879c
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 
+      - CollectPath: Assets/GameRes/UI
+        CollectorGUID: ebf3f2a276eb30a419624e55039c1450
+        CollectorType: 0
+        AddressRuleName: AddressByFileName
+        PackRuleName: PackDirectory
+        FilterRuleName: CollectAll
+        AssetTags: 
+        UserData: 

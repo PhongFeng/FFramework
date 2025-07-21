@@ -29,7 +29,7 @@ internal class FsmClearPackageCache : FsmState<PatchOperation>, IReference
         PatchEventDefine.PatchStatesChange.SendEventMessage(this, "清理未使用的缓存文件！");
         var packageName = owner.packageName;
         var package = YooAssets.GetPackage(packageName);
-        var operation = package.ClearUnusedBundleFilesAsync();
+        var operation = package.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
         operation.Completed += Operation_Completed;
     }
     public static FsmClearPackageCache Create()

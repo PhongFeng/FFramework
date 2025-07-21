@@ -24,8 +24,8 @@ public class FsmDownloadPackageFiles : FsmState<PatchOperation>, IReference
     private async UniTask BeginDownload(ProcedureOwner procedureOwner)
     {
         var downloader = owner.resourceDownloaderOperation;
-        downloader.OnDownloadErrorCallback = WebFileDownloadFailed;
-        downloader.OnDownloadProgressCallback = DownloadProgressUpdate;
+        downloader.DownloadErrorCallback = WebFileDownloadFailed;
+        downloader.DownloadUpdateCallback = DownloadProgressUpdate;
         downloader.BeginDownload();
 
         await UniTask.WaitUntil(() => downloader.IsDone);
@@ -37,14 +37,14 @@ public class FsmDownloadPackageFiles : FsmState<PatchOperation>, IReference
         ChangeState<FsmDownloadPackageOver>(procedureOwner);
     }
 
-    public void DownloadProgressUpdate(int totalDownloadCount, int currentDownloadCount, long totalDownloadSizeBytes, long currentDownloadSizeBytes)
+    public void DownloadProgressUpdate(DownloadUpdateData data)
     {
-        PatchEventDefine.DownloadProgressUpdate.SendEventMessage(this, totalDownloadCount, currentDownloadCount, totalDownloadSizeBytes,  currentDownloadSizeBytes);
+        //PatchEventDefine.DownloadProgressUpdate.SendEventMessage(this, totalDownloadCount, currentDownloadCount, totalDownloadSizeBytes,  currentDownloadSizeBytes);
     }
 
-    public void WebFileDownloadFailed(string fileName, string error)
+    public void WebFileDownloadFailed(DownloadErrorData data)
     {
-        PatchEventDefine.WebFileDownloadFailed.SendEventMessage(this, fileName, error);
+        //PatchEventDefine.WebFileDownloadFailed.SendEventMessage(this, fileName, error);
     }
     public static FsmDownloadPackageFiles Create()
     {
