@@ -28,7 +28,6 @@ internal class FsmInitializePackage : FsmState<PatchOperation>, IReference
     {
         var playMode = owner.playMode;
         var packageName = owner.packageName;
-        var buildPipeline = owner.buildPipeline;
 
         // 创建资源包裹类
         var package = YooAssets.TryGetPackage(packageName);
@@ -66,9 +65,25 @@ internal class FsmInitializePackage : FsmState<PatchOperation>, IReference
             initializationOperation = package.InitializeAsync(createParameters);
         }
 
-        //yield return initializationOperation;
+        // WebGL运行模式
+        if (playMode == EPlayMode.WebPlayMode)
+        {
+#if UNITY_WEBGL && WEIXINMINIGAME && !UNITY_EDITOR
+            var createParameters = new WebPlayModeParameters();
+			string defaultHostServer = GetHostServerURL();
+            string fallbackHostServer = GetHostServerURL();
+            string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE"; //注意：如果有子目录，请修改此处！
+            IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
+            createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices);
+            initializationOperation = package.InitializeAsync(createParameters);
+#else
+            var createParameters = new WebPlayModeParameters();
+            createParameters.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters();
+            initializationOperation = package.InitializeAsync(createParameters);
+#endif
+        }
+
         await UniTask.WaitUntil(() => initializationOperation.IsDone);
-        //GameManager.Instance.StartCoroutine(GetLocalPackage());
 
         // 如果初始化失败弹出提示界面
         if (initializationOperation.Status != EOperationStatus.Succeed)
@@ -78,7 +93,6 @@ internal class FsmInitializePackage : FsmState<PatchOperation>, IReference
         }
         else
         {
-            //_machine.ChangeState<FsmUpdatePackageVersion>();
             ChangeState<FsmUpdatePackageVersion>(procedureOwner);
         }
     }
