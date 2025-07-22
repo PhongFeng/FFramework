@@ -18,12 +18,6 @@
     <type fullname="GameFramework.Procedure.IProcedureManager" preserve="all" />
     <type fullname="GameFramework.Procedure.ProcedureBase" preserve="all" />
     <type fullname="GameFramework.ReferencePool" preserve="all" />
-    <type fullname="GameFramework.Resource.CheckVersionListResult" preserve="all" />
-    <type fullname="GameFramework.Resource.IResourceGroup" preserve="all" />
-    <type fullname="GameFramework.Resource.UpdateResourcesCompleteCallback" preserve="all" />
-    <type fullname="GameFramework.Resource.UpdateVersionListCallbacks" preserve="all" />
-    <type fullname="GameFramework.Resource.UpdateVersionListFailureCallback" preserve="all" />
-    <type fullname="GameFramework.Resource.UpdateVersionListSuccessCallback" preserve="all" />
     <type fullname="GameFramework.Sound.ISoundGroup" preserve="all" />
     <type fullname="GameFramework.Sound.PlaySoundParams" preserve="all" />
     <type fullname="GameFramework.UI.IUIForm" preserve="all" />
@@ -31,12 +25,17 @@
     <type fullname="GameFramework.Utility" preserve="all" />
     <type fullname="GameFramework.Utility/Json" preserve="all" />
     <type fullname="GameFramework.Utility/Json/IJsonHelper" preserve="all" />
-    <type fullname="GameFramework.Utility/Path" preserve="all" />
     <type fullname="GameFramework.Utility/Text" preserve="all" />
     <type fullname="GameFramework.Variable`1" preserve="all" />
   </assembly>
   <assembly fullname="LitJson">
     <type fullname="LitJson.JsonMapper" preserve="all" />
+  </assembly>
+  <assembly fullname="System">
+    <type fullname="System.CodeDom.Compiler.GeneratedCodeAttribute" preserve="all" />
+    <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
+    <type fullname="System.ComponentModel.EditorBrowsableAttribute" preserve="all" />
+    <type fullname="System.ComponentModel.EditorBrowsableState" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.AIModule">
     <type fullname="UnityEngine.AI.NavMesh" preserve="all" />
@@ -48,7 +47,6 @@
     <type fullname="UnityEngine.Animation" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.CoreModule">
-    <type fullname="UnityEngine.Application" preserve="all" />
     <type fullname="UnityEngine.Behaviour" preserve="all" />
     <type fullname="UnityEngine.Camera" preserve="all" />
     <type fullname="UnityEngine.Color" preserve="all" />
@@ -78,7 +76,6 @@
     <type fullname="UnityEngine.RectTransform" preserve="all" />
     <type fullname="UnityEngine.Renderer" preserve="all" />
     <type fullname="UnityEngine.RequireComponent" preserve="all" />
-    <type fullname="UnityEngine.RuntimePlatform" preserve="all" />
     <type fullname="UnityEngine.Screen" preserve="all" />
     <type fullname="UnityEngine.SerializeField" preserve="all" />
     <type fullname="UnityEngine.Sprite" preserve="all" />
@@ -142,12 +139,10 @@
     <type fullname="UnityGameFramework.Runtime.DataTableComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.DebuggerComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.DefaultLocalizationHelper" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.DownloadComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.Entity" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EntityComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EntityLogic" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.EventComponent" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.FileSystemComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.FsmComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.GameEntry" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.GameFrameworkComponent" preserve="all" />
@@ -169,10 +164,6 @@
     <type fullname="UnityGameFramework.Runtime.ObjectPoolComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.OpenUIFormSuccessEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ProcedureComponent" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.ResourceUpdateChangedEventArgs" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.ResourceUpdateFailureEventArgs" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.ResourceUpdateStartEventArgs" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.ResourceUpdateSuccessEventArgs" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.SceneComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.SettingComponent" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.ShowEntityFailureEventArgs" preserve="all" />
@@ -187,10 +178,14 @@
     <type fullname="UnityGameFramework.Runtime.UIGroupHelperBase" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.VarInt32" preserve="all" />
     <type fullname="UnityGameFramework.Runtime.WebRequestComponent" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.WebRequestFailureEventArgs" preserve="all" />
-    <type fullname="UnityGameFramework.Runtime.WebRequestSuccessEventArgs" preserve="all" />
   </assembly>
-  <assembly fullname="netstandard">
+  <assembly fullname="YooAsset">
+    <type fullname="YooAsset.AssetHandle" preserve="all" />
+    <type fullname="YooAsset.RequestPackageVersionOperation" preserve="all" />
+    <type fullname="YooAsset.ResourcePackage" preserve="all" />
+    <type fullname="YooAsset.YooAssets" preserve="all" />
+  </assembly>
+  <assembly fullname="mscorlib">
     <type fullname="System.Action" preserve="all" />
     <type fullname="System.Action`1" preserve="all" />
     <type fullname="System.ArgumentOutOfRangeException" preserve="all" />
@@ -198,7 +193,6 @@
     <type fullname="System.Boolean" preserve="all" />
     <type fullname="System.Byte" preserve="all" />
     <type fullname="System.Char" preserve="all" />
-    <type fullname="System.CodeDom.Compiler.GeneratedCodeAttribute" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2/Enumerator" preserve="all" />
     <type fullname="System.Collections.Generic.Dictionary`2/KeyCollection" preserve="all" />
@@ -210,10 +204,7 @@
     <type fullname="System.Collections.Generic.KeyValuePair`2" preserve="all" />
     <type fullname="System.Collections.Generic.List`1" preserve="all" />
     <type fullname="System.Collections.Generic.List`1/Enumerator" preserve="all" />
-    <type fullname="System.Collections.Generic.Queue`1" preserve="all" />
     <type fullname="System.Collections.IEnumerator" preserve="all" />
-    <type fullname="System.ComponentModel.EditorBrowsableAttribute" preserve="all" />
-    <type fullname="System.ComponentModel.EditorBrowsableState" preserve="all" />
     <type fullname="System.DateTime" preserve="all" />
     <type fullname="System.Delegate" preserve="all" />
     <type fullname="System.Diagnostics.DebuggableAttribute" preserve="all" />

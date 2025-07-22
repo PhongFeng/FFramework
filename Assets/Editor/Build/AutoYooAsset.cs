@@ -9,8 +9,7 @@ using YooAsset.Editor;
 
 public class AutoYooAsset : Editor
 {
-
-    public static void BuildYooAsset(BuildTarget buildTarget, string buildVersion, string packageName = "DefaultPackage", EBuildinFileCopyOption copyOp = EBuildinFileCopyOption.ClearAndCopyAll)
+    public static void BuildYooAsset(BuildTarget buildTarget, string buildVersion, EBuildinFileCopyOption copyOp = EBuildinFileCopyOption.ClearAndCopyAll)
     {
         Debug.Log($"开始构建 : {buildTarget}");
 
@@ -18,29 +17,27 @@ public class AutoYooAsset : Editor
         var streamingAssetsRoot = AssetBundleBuilderHelper.GetStreamingAssetsRoot();
 
         // 构建参数
-        ScriptableBuildParameters scriptableBuildParameters = new ScriptableBuildParameters();
-        scriptableBuildParameters.BuildOutputRoot = buildoutputRoot;
-        scriptableBuildParameters.BuildinFileRoot = streamingAssetsRoot;
-        scriptableBuildParameters.BuildPipeline = EBuildPipeline.ScriptableBuildPipeline.ToString();
-        scriptableBuildParameters.BuildTarget = buildTarget;
-        //scriptableBuildParameters.BuildMode = EBuildMode.IncrementalBuild;
-        scriptableBuildParameters.PackageName = packageName;
-        scriptableBuildParameters.PackageVersion = buildVersion;
-        scriptableBuildParameters.VerifyBuildingResult = true;
-        scriptableBuildParameters.EnableSharePackRule = true; //启用共享资源构建模式，兼容1.5x版本
-        scriptableBuildParameters.BuildinFileCopyOption = copyOp;
-        scriptableBuildParameters.BuildinFileCopyParams = string.Empty;
-        scriptableBuildParameters.CompressOption = ECompressOption.LZ4;
-
-        // Bundle格式
-        scriptableBuildParameters.FileNameStyle = EFileNameStyle.BundleName;
-        scriptableBuildParameters.EncryptionServices = null;
-
-
+        BuiltinBuildParameters buildParameters = new BuiltinBuildParameters();
+        buildParameters.BuildOutputRoot = buildoutputRoot;
+        buildParameters.BuildinFileRoot = streamingAssetsRoot;
+        buildParameters.BuildPipeline = EBuildPipeline.BuiltinBuildPipeline.ToString();
+        buildParameters.BuildBundleType = (int)EBuildBundleType.AssetBundle; //必须指定资源包类型
+        buildParameters.BuildTarget = buildTarget;
+        buildParameters.PackageName = "DefaultPackage";
+        buildParameters.PackageVersion = buildVersion;
+        buildParameters.VerifyBuildingResult = true;
+        buildParameters.EnableSharePackRule = true; //启用共享资源构建模式，兼容1.5x版本
+        buildParameters.FileNameStyle = EFileNameStyle.HashName;
+        buildParameters.BuildinFileCopyOption = copyOp;
+        buildParameters.BuildinFileCopyParams = string.Empty;
+        buildParameters.EncryptionServices = null;
+        buildParameters.CompressOption = ECompressOption.LZ4;
+        buildParameters.ClearBuildCacheFiles = false; //不清理构建缓存，启用增量构建，可以提高打包速度！
+        buildParameters.UseAssetDependencyDB = true; //使用资源依赖关系数据库，可以提高打包速度！
 
         // 执行构建
-        ScriptableBuildPipeline pipeline = new ScriptableBuildPipeline();
-        var buildResult = pipeline.Run(scriptableBuildParameters, true);
+        BuiltinBuildPipeline pipeline = new BuiltinBuildPipeline();
+        var buildResult = pipeline.Run(buildParameters, true);
         if (buildResult.Success)
         {
             Debug.Log($"构建成功 : {buildResult.OutputPackageDirectory}");
@@ -49,5 +46,16 @@ public class AutoYooAsset : Editor
         {
             Debug.LogError($"构建失败 : {buildResult.ErrorInfo}");
         }
+    }
+
+    // 从构建命令里获取参数示例
+    private static string GetBuildPackageName()
+    {
+        foreach (string arg in System.Environment.GetCommandLineArgs())
+        {
+            if (arg.StartsWith("buildPackage"))
+                return arg.Split("="[0])[1];
+        }
+        return string.Empty;
     }
 }

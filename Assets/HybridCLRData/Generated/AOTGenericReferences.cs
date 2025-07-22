@@ -19,9 +19,6 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 
 	// {{ AOT generic types
 	// GameFramework.DataTable.IDataTable<object>
-	// GameFramework.Fsm.Fsm<object>
-	// GameFramework.Fsm.FsmState<object>
-	// GameFramework.Fsm.IFsm<object>
 	// GameFramework.GameFrameworkLinkedList.Enumerator<object>
 	// GameFramework.GameFrameworkLinkedList<object>
 	// GameFramework.GameFrameworkLinkedListRange.Enumerator<object>
@@ -141,9 +138,6 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 	// System.Nullable<int>
 	// System.Predicate<int>
 	// System.Predicate<object>
-	// System.Runtime.CompilerServices.ConditionalWeakTable.CreateValueCallback<object,object>
-	// System.Runtime.CompilerServices.ConditionalWeakTable.Enumerator<object,object>
-	// System.Runtime.CompilerServices.ConditionalWeakTable<object,object>
 	// UnityEngine.Events.InvokableCall<byte>
 	// UnityEngine.Events.InvokableCall<float>
 	// UnityEngine.Events.UnityAction<byte>
@@ -162,17 +156,12 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// object GameFramework.Fsm.IFsm<object>.GetData<object>(string)
 		// System.Void GameFramework.Fsm.IFsm<object>.SetData<object>(string,object)
 		// System.Void GameFramework.Fsm.IFsm<object>.Start<object>()
-		// GameFramework.Fsm.IFsm<object> GameFramework.Fsm.IFsmManager.CreateFsm<object>(string,object,System.Collections.Generic.List<GameFramework.Fsm.FsmState<object>>)
-		// bool GameFramework.Fsm.IFsmManager.DestroyFsm<object>(GameFramework.Fsm.IFsm<object>)
-		// object GameFramework.ReferencePool.Acquire<object>()
-		// object GameFramework.ReferencePool.ReferenceCollection.Acquire<object>()
 		// object GameFramework.Utility.Json.ToObject<object>(string)
 		// object GameFramework.Utility.Json.IJsonHelper.ToObject<object>(string)
 		// object LitJson.JsonMapper.ToObject<object>(string)
 		// object System.Activator.CreateInstance<object>()
 		// object& System.Runtime.CompilerServices.Unsafe.As<object,object>(object&)
 		// System.Void* System.Runtime.CompilerServices.Unsafe.AsPointer<object>(object&)
-		// object System.Threading.Interlocked.CompareExchange<object>(object&,object,object)
 		// object UnityEngine.Component.GetComponent<object>()
 		// object UnityEngine.Component.GetComponentInChildren<object>()
 		// System.Void UnityEngine.Component.GetComponentsInChildren<object>(bool,System.Collections.Generic.List<object>)
@@ -187,8 +176,6 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// object UnityGameFramework.Runtime.DataComponent.GetData<object>()
 		// bool UnityGameFramework.Runtime.DataTableComponent.DestroyDataTable<object>()
 		// GameFramework.DataTable.IDataTable<object> UnityGameFramework.Runtime.DataTableComponent.GetDataTable<object>()
-		// GameFramework.Fsm.IFsm<object> UnityGameFramework.Runtime.FsmComponent.CreateFsm<object>(string,object,System.Collections.Generic.List<GameFramework.Fsm.FsmState<object>>)
-		// bool UnityGameFramework.Runtime.FsmComponent.DestroyFsm<object>(GameFramework.Fsm.IFsm<object>)
 		// object UnityGameFramework.Runtime.GameEntry.GetComponent<object>()
 	}
 }
