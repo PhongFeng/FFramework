@@ -61,15 +61,6 @@ namespace Flower
         }
 
         /// <summary>
-        /// 获取下载组件。
-        /// </summary>
-        public static DownloadComponent Download
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
         /// 获取实体组件。
         /// </summary>
         public static EntityComponent Entity
@@ -82,15 +73,6 @@ namespace Flower
         /// 获取事件组件。
         /// </summary>
         public static EventComponent Event
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// 获取文件系统组件。
-        /// </summary>
-        public static FileSystemComponent FileSystem
         {
             get;
             private set;
@@ -202,10 +184,8 @@ namespace Flower
             DataNode = UnityGameFramework.Runtime.GameEntry.GetComponent<DataNodeComponent>();
             DataTable = UnityGameFramework.Runtime.GameEntry.GetComponent<DataTableComponent>();
             Debugger = UnityGameFramework.Runtime.GameEntry.GetComponent<DebuggerComponent>();
-            Download = UnityGameFramework.Runtime.GameEntry.GetComponent<DownloadComponent>();
             Entity = UnityGameFramework.Runtime.GameEntry.GetComponent<EntityComponent>();
             Event = UnityGameFramework.Runtime.GameEntry.GetComponent<EventComponent>();
-            FileSystem = UnityGameFramework.Runtime.GameEntry.GetComponent<FileSystemComponent>();
             Fsm = UnityGameFramework.Runtime.GameEntry.GetComponent<FsmComponent>();
             Localization = UnityGameFramework.Runtime.GameEntry.GetComponent<LocalizationComponent>();
             Network = UnityGameFramework.Runtime.GameEntry.GetComponent<NetworkComponent>();

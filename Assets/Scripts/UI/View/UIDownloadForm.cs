@@ -27,18 +27,18 @@ namespace Flower
         {
             base.OnUpdate(elapseSeconds, realElapseSeconds);
 
-            if (GameEntry.Download.WorkingAgentCount > 0)
-            {
-                if (!Content.activeSelf)
-                    Content.SetActive(true);
+            //if (GameEntry.Download.WorkingAgentCount > 0)
+            //{
+            //    if (!Content.activeSelf)
+            //        Content.SetActive(true);
 
-                speedText.text = GetByteLengthString((int)GameEntry.Download.CurrentSpeed);
-            }
-            else
-            {
-                if (Content.activeSelf)
-                    Content.SetActive(false);
-            }
+            //    speedText.text = GetByteLengthString((int)GameEntry.Download.CurrentSpeed);
+            //}
+            //else
+            //{
+            //    if (Content.activeSelf)
+            //        Content.SetActive(false);
+            //}
         }
 
         protected override void OnClose(bool isShutdown, object userData)

@@ -5,8 +5,6 @@
 // Feedback: mailto:ellan@gameframework.cn
 //------------------------------------------------------------
 
-using GameFramework.Download;
-using GameFramework.FileSystem;
 using GameFramework.ObjectPool;
 using System;
 
