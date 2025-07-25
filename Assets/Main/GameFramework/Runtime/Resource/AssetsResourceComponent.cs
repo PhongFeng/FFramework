@@ -36,7 +36,7 @@ namespace UnityGameFramework.Runtime
         public void ForceUnloadUnusedAssets(bool isForce)
         {
             var package = YooAssets.GetPackage("DefaultPackage");
-            var operation = package.UnloadUnusedAssetsAsync();
+            var operation = package.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace UnityGameFramework.Runtime
         public void UnloadAsset(object asset)
         {
             var package = YooAssets.GetPackage("DefaultPackage");
-            package.UnloadUnusedAssetsAsync();
+            var operation = package.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
         }
 
         /// <summary>
