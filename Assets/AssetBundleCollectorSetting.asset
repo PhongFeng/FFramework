@@ -80,10 +80,10 @@ MonoBehaviour:
       - CollectPath: Assets/GameRes/ShaderVariants
         CollectorGUID: 8e740c6ddb1d8fa43abfdcf00f024d1f
         CollectorType: 0
-        AddressRuleName: AddressByFileNameAndExt
+        AddressRuleName: AddressByFileName
         PackRuleName: PackDirectory
-        FilterRuleName: CollectAll
-        AssetTags: 
+        FilterRuleName: CollectShaderVariants
+        AssetTags: ShaderVariants
         UserData: 
       - CollectPath: Assets/GameRes/Sounds
         CollectorGUID: 345203f4b4b509e409623d184cbc80fd

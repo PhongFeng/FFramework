@@ -36,7 +36,7 @@ public class LoadDll : MonoBehaviour
     /// <returns></returns>
     private async UniTask ShaderVariantsWarmUp()
     {
-        var op = YooAssets.LoadAssetAsync<ShaderVariantCollection>("GameShaderVariants.shadervariants");
+        var op = YooAssets.LoadAssetAsync<ShaderVariantCollection>("GameShaderVariants");
         await op.ToUniTask();
         var shaderVariants = op.AssetObject as ShaderVariantCollection;
         if (!shaderVariants.isWarmedUp)

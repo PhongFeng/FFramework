@@ -1,6 +1,6 @@
 {
-    "ShaderTotalCount": 26,
-    "VariantTotalCount": 35,
+    "ShaderTotalCount": 23,
+    "VariantTotalCount": 33,
     "ShaderVariantInfos": [
         {
             "AssetPath": "Packages/com.unity.render-pipelines.core/Runtime/RenderPipelineResources/FallbackShader.shader",
@@ -84,6 +84,26 @@
                     "PassType": 8,
                     "Keywords": [
                         "_SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A"
+                    ]
+                }
+            ]
+        },
+        {
+            "AssetPath": "Packages/com.unity.render-pipelines.universal/Shaders/Particles/ParticlesUnlit.shader",
+            "ShaderName": "Universal Render Pipeline/Particles/Unlit",
+            "ShaderVariantCount": 2,
+            "ShaderVariantElements": [
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "_ALPHAMODULATE_ON",
+                        "_SURFACE_TYPE_TRANSPARENT"
+                    ]
+                },
+                {
+                    "PassType": 0,
+                    "Keywords": [
+                        "_SURFACE_TYPE_TRANSPARENT"
                     ]
                 }
             ]
@@ -302,58 +322,6 @@
         {
             "AssetPath": "Resources/unity_builtin_extra",
             "ShaderName": "Hidden/UIElements/EditorUIE",
-            "ShaderVariantCount": 1,
-            "ShaderVariantElements": [
-                {
-                    "PassType": 0,
-                    "Keywords": [
-                        ""
-                    ]
-                }
-            ]
-        },
-        {
-            "AssetPath": "Resources/unity_builtin_extra",
-            "ShaderName": "Legacy Shaders/Particles/Additive",
-            "ShaderVariantCount": 1,
-            "ShaderVariantElements": [
-                {
-                    "PassType": 0,
-                    "Keywords": [
-                        ""
-                    ]
-                }
-            ]
-        },
-        {
-            "AssetPath": "Resources/unity_builtin_extra",
-            "ShaderName": "Legacy Shaders/Particles/Additive (Soft)",
-            "ShaderVariantCount": 1,
-            "ShaderVariantElements": [
-                {
-                    "PassType": 0,
-                    "Keywords": [
-                        ""
-                    ]
-                }
-            ]
-        },
-        {
-            "AssetPath": "Resources/unity_builtin_extra",
-            "ShaderName": "Legacy Shaders/Particles/Alpha Blended",
-            "ShaderVariantCount": 1,
-            "ShaderVariantElements": [
-                {
-                    "PassType": 0,
-                    "Keywords": [
-                        ""
-                    ]
-                }
-            ]
-        },
-        {
-            "AssetPath": "Resources/unity_builtin_extra",
-            "ShaderName": "Legacy Shaders/Particles/Multiply (Double)",
             "ShaderVariantCount": 1,
             "ShaderVariantElements": [
                 {
