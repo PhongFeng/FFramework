@@ -21,6 +21,31 @@ namespace Flower
         public float nearZoomPanSpeedModifier = 0.2f;
 
         /// <summary>
+        /// Pan threshold (how near to the edge before we pan. Also the denominator for RMB pan)
+        /// </summary>
+        public float screenPanThreshold = 40f;
+
+        /// <summary>
+        /// Pan speed for edge panning
+        /// </summary>
+        public float mouseEdgePanSpeed = 30f;
+
+        /// <summary>
+        /// Drag pan speed multiplier
+        /// </summary>
+        public float dragPanSpeed = 5.0f;
+
+        /// <summary>
+        /// Whether we're currently dragging
+        /// </summary>
+        private bool isDragging = false;
+
+        /// <summary>
+        /// Last mouse position for drag calculation
+        /// </summary>
+        private Vector2 lastMousePosition;
+
+        /// <summary>
         /// Gets our pan speed multiplier for the given zoom level
         /// </summary>
         /// <returns></returns>
@@ -32,153 +57,88 @@ namespace Flower
         }
 
         /// <summary>
-        /// Pan threshold (how near to the edge before we pan. Also the denominator for RMB pan)
-        /// </summary>
-        public float screenPanThreshold = 40f;
-
-        /// <summary>
-        /// Pan speed for edge panning
-        /// </summary>
-        public float mouseEdgePanSpeed = 30f;
-
-        /// <summary>
-        /// Pan speed for RMB panning
-        /// </summary>
-        public float mouseRmbPanSpeed = 15f;
-
-
-
-        /// <summary>
-        /// Do screen edge panning with the given screen coordinates
-        /// </summary>
-        /// <param name="screenPosition">The screen position of the cursor panning the camera</param>
-        /// <param name="screenEdgeThreshold">The screen edge threshold in pixels</param>
-        /// <param name="panSpeed">Speed of panning</param>
-        private void PanWithScreenCoordinates(Vector2 screenPosition, float screenEdgeThreshold, float panSpeed)
-        {
-            // Calculate zoom ratio
-            float zoomRatio = GetPanSpeedForZoomLevel();
-
-            // Left
-            if ((screenPosition.x < screenEdgeThreshold))
-            {
-                float panAmount = (screenEdgeThreshold - screenPosition.x) / screenEdgeThreshold;
-                panAmount = Mathf.Clamp01(Mathf.Log(panAmount) + 1);
-                if (cameraControl.trackingObject == null)
-                {
-                    cameraControl.PanCamera(Vector3.left * Time.deltaTime * panSpeed * panAmount * zoomRatio);
-                    cameraControl.StopTracking();
-                }
-            }
-
-            // Right
-            if ((screenPosition.x > Screen.width - screenEdgeThreshold))
-            {
-                float panAmount = ((screenEdgeThreshold - Screen.width) + screenPosition.x) / screenEdgeThreshold;
-                panAmount = Mathf.Clamp01(Mathf.Log(panAmount) + 1);
-
-                if (cameraControl.trackingObject == null)
-                {
-                    cameraControl.PanCamera(Vector3.right * Time.deltaTime * panSpeed * panAmount * zoomRatio);
-                }
-                cameraControl.StopTracking();
-            }
-
-            // Down
-            if ((screenPosition.y < screenEdgeThreshold))
-            {
-                float panAmount = (screenEdgeThreshold - screenPosition.y) / screenEdgeThreshold;
-                panAmount = Mathf.Clamp01(Mathf.Log(panAmount) + 1);
-
-                if (cameraControl.trackingObject == null)
-                {
-                    cameraControl.PanCamera(Vector3.back * Time.deltaTime * panSpeed * panAmount * zoomRatio);
-
-                    cameraControl.StopTracking();
-                }
-            }
-
-            // Up
-            if ((screenPosition.y > Screen.height - screenEdgeThreshold))
-            {
-                float panAmount = ((screenEdgeThreshold - Screen.height) + screenPosition.y) / screenEdgeThreshold;
-                panAmount = Mathf.Clamp01(Mathf.Log(panAmount) + 1);
-
-                if (cameraControl.trackingObject == null)
-                {
-                    cameraControl.PanCamera(Vector3.forward * Time.deltaTime * panSpeed * panAmount * zoomRatio);
-
-                    cameraControl.StopTracking();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Perform keyboard panning
-        /// </summary>
-        protected void DoKeyboardPan()
-        {
-            // Calculate zoom ratio
-            float zoomRatio = GetPanSpeedForZoomLevel();
-
-            // Left
-            if (UnityInput.GetKey(KeyCode.LeftArrow) || UnityInput.GetKey(KeyCode.A))
-            {
-                cameraControl.PanCamera(Vector3.left * Time.deltaTime * mouseEdgePanSpeed * zoomRatio);
-
-                cameraControl.StopTracking();
-            }
-
-            // Right
-            if (UnityInput.GetKey(KeyCode.RightArrow) || UnityInput.GetKey(KeyCode.D))
-            {
-                cameraControl.PanCamera(Vector3.right * Time.deltaTime * mouseEdgePanSpeed * zoomRatio);
-
-                cameraControl.StopTracking();
-            }
-
-            // Down
-            if (UnityInput.GetKey(KeyCode.DownArrow) || UnityInput.GetKey(KeyCode.S))
-            {
-                cameraControl.PanCamera(Vector3.back * Time.deltaTime * mouseEdgePanSpeed * zoomRatio);
-
-                cameraControl.StopTracking();
-            }
-
-            // Up
-            if (UnityInput.GetKey(KeyCode.UpArrow) || UnityInput.GetKey(KeyCode.W))
-            {
-                cameraControl.PanCamera(Vector3.forward * Time.deltaTime * mouseEdgePanSpeed * zoomRatio);
-
-                cameraControl.StopTracking();
-            }
-        }
-
-        /// <summary>
-        /// Perform mouse screen-edge panning
+        /// Perform drag panning - drag the screen to move camera
         /// </summary>
         private void DoScreenEdgePan()
         {
             Vector2 mousePos = UnityInput.mousePosition;
 
+            // Check if mouse is inside screen bounds
             bool mouseInside = (mousePos.x >= 0) &&
                                (mousePos.x < Screen.width) &&
                                (mousePos.y >= 0) &&
                                (mousePos.y < Screen.height);
 
-            // Mouse can be outside of our window
-            if (mouseInside)
+            // Handle drag input
+            if (UnityInput.GetMouseButtonDown(0)) // Left mouse button down
             {
-                PanWithScreenCoordinates(mousePos, screenPanThreshold, mouseEdgePanSpeed);
+                if (mouseInside)
+                {
+                    isDragging = true;
+                    lastMousePosition = mousePos;
+                    cameraControl.StopTracking(); // Stop tracking when starting to drag
+                }
+            }
+            else if (UnityInput.GetMouseButtonUp(0)) // Left mouse button up
+            {
+                isDragging = false;
+            }
+
+            // Handle drag movement
+            if (isDragging && mouseInside)
+            {
+                Vector2 mouseDelta = mousePos - lastMousePosition;
+                
+                if (mouseDelta.magnitude > 0.1f) // Only move if there's significant movement
+                {
+                    // Calculate zoom ratio for pan speed
+                    float zoomRatio = GetPanSpeedForZoomLevel();
+                    
+                    // Convert screen delta to world space movement
+                    // We need to project the screen movement to the ground plane
+                    Vector3 worldDelta = ConvertScreenDeltaToWorldDelta(mouseDelta, zoomRatio);
+                    
+                    // Apply the pan movement
+                    cameraControl.PanCamera(worldDelta * dragPanSpeed);
+                }
+                
+                lastMousePosition = mousePos;
             }
         }
 
         /// <summary>
-        /// Decay the zoom if it's springy
+        /// Convert screen delta to world space delta for camera panning
         /// </summary>
-        protected void DecayZoom()
+        /// <param name="screenDelta">Screen space mouse movement</param>
+        /// <param name="zoomRatio">Current zoom ratio for speed adjustment</param>
+        /// <returns>World space movement vector</returns>
+        private Vector3 ConvertScreenDeltaToWorldDelta(Vector2 screenDelta, float zoomRatio)
         {
-            cameraControl.ZoomDecay();
+            if (cameraControl == null || cameraControl.cachedCamera == null)
+                return Vector3.zero;
+
+            // Get current camera
+            Camera cam = cameraControl.cachedCamera;
+            
+            // Calculate the movement based on screen percentage
+            float screenWidthPercent = screenDelta.x / Screen.width;
+            float screenHeightPercent = screenDelta.y / Screen.height;
+            
+            // Get the current view frustum at the ground plane
+            Vector3 currentLookPos = cameraControl.currentLookPosition;
+            
+            // Calculate world space movement based on current zoom level and camera angle
+            float worldMovementScale = cameraControl.zoomDist * 0.5f; // Adjust this multiplier as needed
+            
+            // Calculate movement in world space
+            Vector3 rightMovement = cam.transform.right * screenWidthPercent * worldMovementScale * -1f; // Invert for natural feel
+            Vector3 forwardMovement = cam.transform.forward * screenHeightPercent * worldMovementScale * -1f; // Invert for natural feel
+            
+            // Project to ground plane (remove Y component)
+            rightMovement.y = 0;
+            forwardMovement.y = 0;
+            
+            return (rightMovement + forwardMovement) * zoomRatio;
         }
 
         private void Update()
@@ -186,19 +146,19 @@ namespace Flower
             if (cameraControl != null && !pause)
             {
                 DoScreenEdgePan();
-                DoKeyboardPan();
-                DecayZoom();
             }
         }
 
         public void Pause()
         {
             pause = true;
+            isDragging = false; // Stop dragging when paused
         }
 
         public void Resume()
         {
             pause = false;
         }
+        
     }
 }

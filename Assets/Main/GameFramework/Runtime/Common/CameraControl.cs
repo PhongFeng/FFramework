@@ -192,44 +192,6 @@ namespace Flower
             transform.LookAt(currentLookPosition);
         }
 
-#if UNITY_EDITOR
-        /// <summary>
-        /// Debug bounds area gizmo
-        /// </summary>
-        void OnDrawGizmosSelected()
-        {
-            // We dont want to display this in edit mode
-            if (!Application.isPlaying)
-            {
-                return;
-            }
-            if (cachedCamera == null)
-            {
-                cachedCamera = GetComponent<UnityEngine.Camera>();
-            }
-            RecalculateBoundingRect();
-
-            Gizmos.color = Color.red;
-
-            Gizmos.DrawLine(
-                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMin),
-                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMin));
-            Gizmos.DrawLine(
-                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMin),
-                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMax));
-            Gizmos.DrawLine(
-                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMax),
-                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMax));
-            Gizmos.DrawLine(
-                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMax),
-                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMin));
-
-            Gizmos.color = Color.yellow;
-
-            Gizmos.DrawLine(transform.position, currentLookPosition);
-        }
-#endif
-
         /// <summary>
         /// Pans the camera to a specific position
         /// </summary>
@@ -331,16 +293,6 @@ namespace Flower
             // Force recalculated CameraPosition
             PanCamera(Vector3.zero);
         }
-
-        /// <summary>
-        /// Calculates the ray for a specified pointer in 3d space
-        /// </summary>
-        /// <param name="pointer">The pointer info</param>
-        /// <returns>The ray representing a screen-space pointer in 3D space</returns>
-        //public Ray GetRayForPointer(PointerInfo pointer)
-        //{
-        //    return cachedCamera.ScreenPointToRay(pointer.currentPosition);
-        //}
 
         /// <summary>
         /// Gets the screen position of a given world position
@@ -447,5 +399,43 @@ namespace Flower
             transform.position = prevCameraPos;
             transform.LookAt(currentLookPosition);
         }
+
+#if UNITY_EDITOR
+        /// <summary>
+        /// Debug bounds area gizmo
+        /// </summary>
+        void OnDrawGizmosSelected()
+        {
+            // We dont want to display this in edit mode
+            if (!Application.isPlaying)
+            {
+                return;
+            }
+            if (cachedCamera == null)
+            {
+                cachedCamera = GetComponent<UnityEngine.Camera>();
+            }
+            RecalculateBoundingRect();
+
+            Gizmos.color = Color.red;
+
+            Gizmos.DrawLine(
+                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMin),
+                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMin));
+            Gizmos.DrawLine(
+                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMin),
+                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMax));
+            Gizmos.DrawLine(
+                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMax),
+                new Vector3(lookBounds.xMin, 0.0f, lookBounds.yMax));
+            Gizmos.DrawLine(
+                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMax),
+                new Vector3(lookBounds.xMax, 0.0f, lookBounds.yMin));
+
+            Gizmos.color = Color.yellow;
+
+            Gizmos.DrawLine(transform.position, currentLookPosition);
+        }
+#endif
     }
 }
