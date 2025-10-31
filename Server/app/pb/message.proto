@@ -1,6 +1,0 @@
-syntax = "proto3";
-
-message PlayerData {
-    string name = 1;
-    int32 score = 2;
-}
