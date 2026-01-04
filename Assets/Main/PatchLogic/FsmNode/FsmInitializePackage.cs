@@ -128,7 +128,7 @@ internal class FsmInitializePackage : FsmState<PatchOperation>, IReference
             }
 
             // 在正常开始游戏之前，还需要验证本地清单内容的完整性。
-            var downloader = package.CreateResourceDownloader(1, 1, 60);
+            var downloader = package.CreateResourceDownloader(10, 3);
             if (downloader.TotalDownloadCount > 0)
             {
                 Debug.LogError("资源内容本地并不完整，需要更新资源！");
