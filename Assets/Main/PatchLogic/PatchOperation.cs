@@ -58,6 +58,7 @@ public class PatchOperation : GameAsyncOperation
 
     protected override void OnAbort()
     {
+
     }
 
     private void EventMessage(object sender, GameEventArgs args)

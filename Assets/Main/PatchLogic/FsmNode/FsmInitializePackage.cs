@@ -97,49 +97,6 @@ internal class FsmInitializePackage : FsmState<PatchOperation>, IReference
         }
     }
 
-    private IEnumerator GetLocalPackage()
-    {
-        var package = YooAssets.GetPackage("DefaultPackage");
-
-        // 先获取远端最新的资源版本
-        var versionOp = package.RequestPackageVersionAsync();
-        yield return versionOp;
-        if (versionOp.Status == EOperationStatus.Succeed)
-        {
-
-        }
-        else
-        {
-            // 获取上次成功记录的版本
-            //string version = PlayerPrefs.GetString("GAME_VERSION", string.Empty);
-            //if (string.IsNullOrEmpty(version))
-            //{
-            //    Debug.LogError("没有找到本地版本记录，需要更新资源！");
-            //    yield break;
-            //}
-
-            // 加载本地缓存的资源清单文件
-            var manifestOp = package.UpdatePackageManifestAsync("2024-10-29-1265");
-            yield return manifestOp;
-            if (manifestOp.Status != EOperationStatus.Succeed)
-            {
-                Debug.LogError("加载本地资源清单文件失败，需要更新资源！");
-                yield break;
-            }
-
-            // 在正常开始游戏之前，还需要验证本地清单内容的完整性。
-            var downloader = package.CreateResourceDownloader(10, 3);
-            if (downloader.TotalDownloadCount > 0)
-            {
-                Debug.LogError("资源内容本地并不完整，需要更新资源！");
-                yield break;
-            }
-
-            // 开始游戏
-            Debug.LogError("开始游戏");
-        }
-    }
-
     /// <summary>
     /// 获取资源服务器地址
     /// </summary>
@@ -200,29 +157,5 @@ class RemoteServices : IRemoteServices
     string IRemoteServices.GetRemoteFallbackURL(string fileName)
     {
         return $"{_fallbackHostServer}/{fileName}";
-    }
-}
-/// <summary>
-/// 资源文件解密流
-/// </summary>
-public class BundleStream : FileStream
-{
-    public const byte KEY = 64;
-
-    public BundleStream(string path, FileMode mode, FileAccess access, FileShare share) : base(path, mode, access, share)
-    {
-    }
-    public BundleStream(string path, FileMode mode) : base(path, mode)
-    {
-    }
-
-    public override int Read(byte[] array, int offset, int count)
-    {
-        var index = base.Read(array, offset, count);
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i] ^= KEY;
-        }
-        return index;
     }
 }

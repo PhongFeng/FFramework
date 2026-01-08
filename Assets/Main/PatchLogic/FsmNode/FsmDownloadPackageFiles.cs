@@ -26,6 +26,7 @@ public class FsmDownloadPackageFiles : FsmState<PatchOperation>, IReference
         var downloader = owner.resourceDownloaderOperation;
         downloader.DownloadErrorCallback = WebFileDownloadFailed;
         downloader.DownloadUpdateCallback = DownloadProgressUpdate;
+        downloader.DownloadFileBeginCallback = DownloadFileBeginCallback;
         downloader.BeginDownload();
 
         await UniTask.WaitUntil(() => downloader.IsDone);
@@ -39,18 +40,25 @@ public class FsmDownloadPackageFiles : FsmState<PatchOperation>, IReference
 
     public void DownloadProgressUpdate(DownloadUpdateData data)
     {
-        //PatchEventDefine.DownloadProgressUpdate.SendEventMessage(this, totalDownloadCount, currentDownloadCount, totalDownloadSizeBytes,  currentDownloadSizeBytes);
+        PatchEventDefine.DownloadProgressUpdate.SendEventMessage(this, data.TotalDownloadCount, data.CurrentDownloadCount, data.TotalDownloadBytes, data.CurrentDownloadBytes);
     }
 
     public void WebFileDownloadFailed(DownloadErrorData data)
     {
-        //PatchEventDefine.WebFileDownloadFailed.SendEventMessage(this, fileName, error);
+        PatchEventDefine.WebFileDownloadFailed.SendEventMessage(this, data.FileName, data.ErrorInfo);
     }
+
+    public void DownloadFileBeginCallback(DownloadFileData data)
+    {
+        UnityEngine.Debug.Log($"download file begin name: {data.FileName}, size: {data.FileSize}");
+    }
+
     public static FsmDownloadPackageFiles Create()
     {
         FsmDownloadPackageFiles state = ReferencePool.Acquire<FsmDownloadPackageFiles>();
         return state;
     }
+
     public void Clear()
     {
         throw new System.NotImplementedException();

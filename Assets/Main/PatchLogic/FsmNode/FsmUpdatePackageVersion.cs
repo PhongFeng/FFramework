@@ -38,11 +38,6 @@ internal class FsmUpdatePackageVersion : FsmState<PatchOperation>, IReference
         }
         else
         {
-            if (packageName == "Launch")
-            {
-                // 注意：下载完成之后再保存本地版本
-                PlayerPrefs.SetString("GAME_VERSION", operation.PackageVersion);
-            }
             Debug.Log($"Request package version : {operation.PackageVersion}");
             owner.packageVersion = operation.PackageVersion;
             ChangeState<FsmUpdatePackageManifest>(procedureOwner);

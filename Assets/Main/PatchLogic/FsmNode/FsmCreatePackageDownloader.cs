@@ -25,7 +25,8 @@ public class FsmCreatePackageDownloader : FsmState<PatchOperation>, IReference
         var package = YooAssets.GetPackage(packageName);
         int downloadingMaxNum = 10;
         int failedTryAgain = 3;
-        var downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
+        // 打入包体内的资源需要加"first_package" Tag
+        var downloader = package.CreateResourceDownloader("first_package", downloadingMaxNum, failedTryAgain);
         owner.resourceDownloaderOperation = downloader;
 
         if (downloader.TotalDownloadCount == 0)
@@ -35,12 +36,9 @@ public class FsmCreatePackageDownloader : FsmState<PatchOperation>, IReference
         }
         else
         {
-            // 发现新更新文件后，挂起流程系统
-            // 注意：开发者需要在下载前检测磁盘空间不足
-            //int totalDownloadCount = downloader.TotalDownloadCount;
-            //long totalDownloadBytes = downloader.TotalDownloadBytes;
-            //PatchEventDefine.FoundUpdateFiles.SendEventMessage(totalDownloadCount, totalDownloadBytes);
-
+            int totalDownloadCount = downloader.TotalDownloadCount;
+            long totalDownloadBytes = downloader.TotalDownloadBytes;
+            Debug.Log($"need download: total download count{totalDownloadCount},total download bytes{totalDownloadBytes}");
             ChangeState<FsmDownloadPackageFiles>(procedureOwner);
         }
     }
