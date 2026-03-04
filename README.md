@@ -9,7 +9,7 @@
 2，资源热更及管理基于YooAsset。  
 3，框架基于GameFramework，并修改支持HybridCLR及YooAsset。  
 并实现，Jenkins自动多渠道打包，白名单灰度测试，一键发布热更资源及版本回退。  
-[【为什么不使用用Addressable，或者其他资源管理】](https://www.yooasset.com/docs/Introduce)   
+[【为什么不使用Addressable，或者其他资源管理】](https://www.yooasset.com/docs/Introduce)   
   
 ### 通过这个项目可以了解到  
 （1）框架为项目中提供基础功能，如资源管理、UI框架、网络通信、消息管理、场景管理、数据解析及存取等，同时定义了一系列规范包括编码的，例如参数命名、注释、缩进等  
